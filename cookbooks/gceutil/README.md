@@ -9,9 +9,6 @@ The cookbook depends on the ruby gem "knife-google".
 
 Attributes
 ----------
-
-e.g.
-#### gceutil::default
 <table>
   <tr>
     <th>Key</th>
@@ -20,28 +17,52 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['gceutil']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['gceutil']['zone']</tt></td>
+    <td>String</td>
+    <td>The name of the Google Compute Engine zone.</td>
+    <td><tt>""</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['gceutil']['disk_size_gb']</tt></td>
+    <td>Integer</td>
+    <td>Persistent disk size in GB.</td>
+    <td><tt>10</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['gceutil']['disk']</tt></td>
+    <td>String</td>
+    <td>The name of persistent disk.</td>
+    <td><tt>"sample-disk"</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['gceutil']['device']</tt></td>
+    <td>String</td>
+    <td>The device name when attaching a persistent disk to an instance.</td>
+    <td><tt>"pd0"</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['gceutil']['mountdir']</tt></td>
+    <td>String</td>
+    <td>The name of the directory where the disk is mounted.</td>
+    <td><tt>"sample_data"</tt></td>
   </tr>
 </table>
 
 Usage
 -----
-#### gceutil::default
 Demonstrates you could create, attach a disk to an instance, detach the disk,
-and delete the disk.
-e.g.
-Just include `gceutil` in your node's `run_list`:
+and delete the disk. To use it, just include `gceutil` in your node's
+`run_list` and configure the attributes such as the compute zone and disk size
+etc.
 
-```json
+<code>
 {
   "name":"my_node",
   "run_list": [
     "recipe[gceutil]"
   ]
 }
+</code>
 
 #### gceutil::create_disk
 Creates a new persistent disk.
@@ -57,15 +78,8 @@ Deletes an existing persistent disk.
 
 Contributing
 ------------
+1. Developed the sample Cookbook.
 
-e.g.
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write you change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
-
-License and Authors
--------------------
-Authors: ntang@google.com.
+License
+--------
+Licensed under the Apache License, Version 2.0
